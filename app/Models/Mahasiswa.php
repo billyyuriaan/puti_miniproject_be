@@ -4,13 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Mahasiswa extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        "nama",
+        "mahasiswa_nim",
+        "mahasiswa_nama",
+        "mahasiswa_alamat",
+        "mahasiswa_email",
+        "mahasiswa_notlp",
+        "mahasiswa_tanggalLahir",
+        "mahasiswa_kelamin",
+        "mahasiswa_programStudi",
+        "mahasiswa_angkatan"
     ];
 
     protected $table = "mahasiswa";
@@ -19,5 +28,10 @@ class Mahasiswa extends Model
 
     protected $KeyType = "string";
 
-    protected $incrementing = false;
+    public $incrementing = false;
+
+    public function jadwal() : HasMany
+    {
+        return $this->hasMany(JadwalKuliah::class);
+    }
 }

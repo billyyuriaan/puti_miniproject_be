@@ -13,12 +13,15 @@ return new class extends Migration
     {
         Schema::create("jadwal", function (Blueprint $table){
             $table->id();
-            $table->foreignId("diajar");
-            $table->foreignId("diikuti");
-            $table->string("waktuMulai");
-            $table->string("waktuSelesai");
-            $table->string("ruang");
-            $table->string("semster");
+            $table->string("dosen_kode");
+            $table->string("mahasiswa_nim");
+            $table->string("jadwal_waktuMulai");
+            $table->string("jadwal_waktuSelesai");
+            $table->string("jadwal_ruang");
+            $table->string("jadwal_semester");
+
+            $table->foreign("dosen_kode")->references("dosen_kode")->on("dosen")->delete("CASCADE");
+            $table->foreign("mahasiswa_nim")->references("mahasiswa_nim")->on("mahasiswa")->delete("CASCADE");
         });
     }
 
