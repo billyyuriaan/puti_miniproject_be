@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string("jadwal_waktuSelesai");
             $table->string("jadwal_ruang");
             $table->string("jadwal_semester");
+            $table->timestamps();
 
             $table->foreign("dosen_kode")->references("dosen_kode")->on("dosen")->delete("CASCADE");
             $table->foreign("mahasiswa_nim")->references("mahasiswa_nim")->on("mahasiswa")->delete("CASCADE");

@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\DosenController;
+use App\Http\Controllers\JadwalKuliahController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,8 @@ Route::prefix("v1")->group(function (){
     });
     
     Route::prefix("jadwal")->group(function (){
-         
+        Route::get("/", [JadwalKuliahController::class, "show"]);
+        Route::get("/{id}", [JadwalKuliahController::class, "showById"]);
+        Route::post("/", [JadwalKuliahController::class, "create"]);
     });
 });

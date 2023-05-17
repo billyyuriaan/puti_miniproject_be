@@ -49,7 +49,7 @@ class MahasiswaController extends Controller
 
     public function showById(string $nim)
     {
-        $data = Mahasiswa::where("nim", $nim)->get();
+        $data = Mahasiswa::where("mahasiswa_nim", "=" ,$nim)->get();
 
         $respond = [
             "message"   => "Berhasil Mengambil Data Mahasiswa",

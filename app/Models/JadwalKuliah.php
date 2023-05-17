@@ -11,7 +11,12 @@ class JadwalKuliah extends Model
     use HasFactory;
 
     protected $fillable = [
-        "nama",
+        "dosen_kode",
+        "mahasiswa_nim",
+        "jadwal_waktuMulai",
+        "jadwal_waktuSelesai",
+        "jadwal_ruang",
+        "jadwal_semester",
     ];
 
     protected $table = "jadwal";
