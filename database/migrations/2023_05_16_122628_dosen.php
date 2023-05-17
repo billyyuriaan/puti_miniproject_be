@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create("dosen", function (Blueprint $table){
-            $table->string("dosen_nip")->index();
-            $table->string("dosen_kode")->index();
+            $table->string("dosen_nip")->index()->unique();
+            $table->string("dosen_kode")->index()->unique();
             $table->string("dosen_nama", 50);
             $table->string("dosen_alamat", 100);
             $table->string("dosen_email", 60);

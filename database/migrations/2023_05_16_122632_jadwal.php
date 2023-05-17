@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("dosen_kode");
             $table->string("mahasiswa_nim");
+            $table->string("jadwal_matkul");
             $table->string("jadwal_waktuMulai");
             $table->string("jadwal_waktuSelesai");
             $table->string("jadwal_ruang");

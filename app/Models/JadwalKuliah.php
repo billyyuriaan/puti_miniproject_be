@@ -13,6 +13,7 @@ class JadwalKuliah extends Model
     protected $fillable = [
         "dosen_kode",
         "mahasiswa_nim",
+        "jadwal_matkul",
         "jadwal_waktuMulai",
         "jadwal_waktuSelesai",
         "jadwal_ruang",

@@ -31,12 +31,13 @@ class JadwalKuliahController extends Controller
             "status"    => 200,
         ];
 
-        $mhs = Mahasiswa::where("mahasiswa_nim" , "=", $res["nim"]);
-        $dsn = Dosen::where("kode_dosen", "=", $res["kode"]);
+        $mhs = Mahasiswa::where("mahasiswa_nim", $res["nim"])->first();
+        $dsn = Dosen::where("dosen_kode", $res["kode"])->first();
 
         JadwalKuliah::create([
-            "dosen_kode" => $dsn->kode_dosen,
+            "dosen_kode" => $dsn->dosen_kode,
             "mahasiswa_nim" => $mhs->mahasiswa_nim,
+            "jadwal_matkul" => $res["matkul"],
             "jadwal_waktuMulai" => $res["waktuMulai"],
             "jadwal_waktuSelesai" => $res["waktuSelesai"],
             "jadwal_ruang" => $res["ruang"],
