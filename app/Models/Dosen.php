@@ -25,7 +25,7 @@ class Dosen extends Model
 
     protected $table = "dosen";
 
-    protected $primaryKey = ["nip", "kode"];
+    protected $primaryKey = ["dosen_nip", "dosen_kode"];
 
     protected $KeyType = "string";
 
@@ -34,5 +34,14 @@ class Dosen extends Model
     public function jadwal() : HasMany
     {
         return $this->hasMany(JadwalKuliah::class);
+    }
+
+    protected function setKeysForSaveQuery($query)
+    {
+        $query
+            ->where('dosen_nip', '=', $this->getAttribute('dosen_nip'))
+            ->where('dosen_kode', '=', $this->getAttribute('dosen_kode'));
+
+        return $query;
     }
 }

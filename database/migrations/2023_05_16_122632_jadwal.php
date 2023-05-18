@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create("jadwal", function (Blueprint $table){
             $table->id();
-            $table->string("dosen_kode");
-            $table->string("mahasiswa_nim");
-            $table->string("jadwal_matkul");
-            $table->string("jadwal_waktuMulai");
-            $table->string("jadwal_waktuSelesai");
-            $table->string("jadwal_ruang");
-            $table->string("jadwal_semester");
+            $table->string("dosen_kode", 50);
+            $table->string("mahasiswa_nim", 50);
+            $table->string("jadwal_matkul", 50);
+            $table->string("jadwal_waktuMulai", 20);
+            $table->string("jadwal_waktuSelesai", 20);
+            $table->string("jadwal_ruang", 20);
+            $table->string("jadwal_semester", 20);
             $table->timestamps();
 
             $table->foreign("dosen_kode")->references("dosen_kode")->on("dosen")->delete("CASCADE");

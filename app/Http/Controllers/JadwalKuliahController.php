@@ -50,6 +50,54 @@ class JadwalKuliahController extends Controller
 
     public function showById(int $id)
     {
-        # code...
+        $data = JadwalKuliah::findOrFail($id);
+
+        $respond = [
+            "message"   => "success mengambil data jadwal kuliah",
+            "status"    => 200,
+            "data"      => $data
+        ];
+
+        return response()->json($respond);
+    }
+
+    public function delete(int $id)
+    {
+        $respond = [
+            "message"   => "Success menghapus data jadwal kuliah",
+            "status"    => 200,
+        ];
+
+        $jadwal = JadwalKuliah::find($id);
+
+        $jadwal->delete();
+
+        return response()->json($respond);
+    }
+
+    public function update(Request $request)
+    {
+        $res = $request->all();
+
+        $respond = [
+            "message"   => "Success mengupdate data jadwal kuliah",
+            "status"    => 200
+        ];
+
+        $jadwal = JadwalKuliah::find($res["id"]);
+        $mhs = Mahasiswa::where("mahasiswa_nim", $res["nim"])->first();
+        $dsn = Dosen::where("dosen_kode", $res["kode"])->first();
+
+        $jadwal->dosen_kode = $dsn->dosen_kode;
+        $jadwal->mahasiswa_nim = $mhs->mahasiswa_nim;
+        $jadwal->jadwal_matkul = $res["matkul"];
+        $jadwal->jadwal_waktuMulai = $res["waktuMulai"];
+        $jadwal->jadwal_waktuSelesai = $res["waktuSelesai"];
+        $jadwal->jadwal_ruang = $res["ruang"];
+        $jadwal->jadwal_semester = $res["semester"];
+
+        $jadwal->save();
+
+        return response()->json($respond);
     }
 }

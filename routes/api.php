@@ -42,5 +42,7 @@ Route::prefix("v1")->group(function (){
         Route::get("/", [JadwalKuliahController::class, "show"]);
         Route::get("/{id}", [JadwalKuliahController::class, "showById"]);
         Route::post("/", [JadwalKuliahController::class, "create"]);
+        Route::delete("/{id}", [JadwalKuliahController::class, "delete"]);
+        Route::put("/", [JadwalKuliahController::class, "update"]);
     });
 });

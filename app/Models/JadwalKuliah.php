@@ -24,7 +24,7 @@ class JadwalKuliah extends Model
 
     public function dosen() : BelongsToMany
     {
-        return $this->belongsToMany(Dosen::class);
+        return $this->belongsToMany(Dosen::class, "dosen_nip", "dosen_kode");
     }
 
     public function mahasiswa() : BelongsToMany

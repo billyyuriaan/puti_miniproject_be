@@ -54,7 +54,7 @@ class DosenController extends Controller
 
     public function showById(string $nip)
     {
-        $data = Dosen::where("nip", $nip)->get();
+        $data = Dosen::where("dosen_nip", $nip)->get();
 
         $respond = [
             "message"   => "Berhasil Mengambil Data Dosen",
@@ -65,13 +65,44 @@ class DosenController extends Controller
         return response()->json($respond);
     }
 
-    public function delete(string $nim)
+    public function delete(string $nip)
     {
+        $respond = [
+            "message"   => "Success Menghapus Data Dosen",
+            "status"    => 200,
+        ];
+
+        $dsn = Dosen::where("dosen_nip", $nip)->first();
+
+        $dsn->delete();
         
+        return response()->json($respond);
     }
 
     public function update(Request $request)
     {
-        # code...
+        $res = $request->all();
+
+        $respond = [
+            "message"   => "Success Mengupdate Data Dosen",
+            "status"    => 200,
+        ];
+
+        $date = Carbon::createFromFormat('d/m/Y', $res["tanggalLahir"])->format('Y-m-d');
+
+        $dsn = Dosen::where("dosen_nip", $res["nip"])->first();        
+
+        $dsn->dosen_nama = $res["nama"];
+        $dsn->dosen_alamat = $res["alamat"];
+        $dsn->dosen_email = $res["email"];
+        $dsn->dosen_notlp = $res["notlp"];
+        $dsn->dosen_tanggalLahir = $date;
+        $dsn->dosen_kelamin = $res["kelamin"];
+        $dsn->dosen_jabatan = $res["jabatan"];
+        $dsn->dosen_departement = $res["departement"];
+
+        $dsn->save();
+
+        return response()->json($respond);
     }
 }

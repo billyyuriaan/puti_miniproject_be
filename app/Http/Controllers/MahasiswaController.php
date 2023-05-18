@@ -62,11 +62,44 @@ class MahasiswaController extends Controller
 
     public function delete(string $nim)
     {
+        $respond = [
+            "message"   => "Success Menghapus Data Mahasiswa",
+            "status"    => 200,
+        ];
+
+        $mhs = Mahasiswa::find($nim);
+
+        $mhs->delete();
         
+        return response()->json($respond);
     }
 
     public function update(Request $request)
     {
-        # code...
+        $res = $request->all();
+
+        $respond = [
+            "message"   => "Success Mengupdate Data Mahasiswa",
+            "status"    => 200,
+        ];
+
+        $date = Carbon::createFromFormat('d/m/Y', $res["tanggalLahir"])->format('Y-m-d');
+
+
+        $mhs = Mahasiswa::find($res["nim"]);
+
+        $mhs->mahasiswa_nama = $res["nama"];
+        $mhs->mahasiswa_alamat = $res["alamat"];
+        $mhs->mahasiswa_email = $res["email"];
+        $mhs->mahasiswa_notlp = $res["notlp"];
+        $mhs->mahasiswa_tanggalLahir = $date;
+        $mhs->mahasiswa_kelamin = $res["kelamin"];
+        $mhs->mahasiswa_programStudi = $res["programStudi"];
+        $mhs->mahasiswa_angkatan = $res["angkatan"];
+
+        $mhs->save();
+
+
+        return response()->json($respond);
     }
 }

@@ -24,7 +24,7 @@ class Mahasiswa extends Model
 
     protected $table = "mahasiswa";
 
-    protected $primaryKey = "nim";
+    protected $primaryKey = "mahasiswa_nim";
 
     protected $KeyType = "string";
 
